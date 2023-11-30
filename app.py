@@ -52,7 +52,7 @@ def create_app():
             # For demonstration purposes, we'll use a placeholder model
             # Replace the following lines with your actual model loading and prediction code
             model = joblib.load('model.pkl')  # Use joblib instead of pickle
-            joblib.dump(model, 'model.pkl')
+            joblib.dump(model, 'model.pkl', protocol=0)
             features = [[1, steps, heart_rate, sleep_duration, stress]]
             prediction = model.predict(features)
 

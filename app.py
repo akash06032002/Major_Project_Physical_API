@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect
 from flask_restful import Resource, Api
-import pickle
+import joblib
 from flask_cors import CORS
 
 def create_app():
@@ -46,12 +46,12 @@ def create_app():
 
                 else:
                     # Not all required parameters provided
-                    return {"message": "Please provide values for Steps, HeartRate, SleepDuration, and Stress."}, 400
+                    return {"message": "Please provide values for Steps, HeartRate, SleepDuration, and Stress. \n /predict?steps=7000&heart_rate=78&sleep_duration=9&stress=1 - in this manner"}, 400
 
             # Add your model loading and prediction logic here
             # For demonstration purposes, we'll use a placeholder model
             # Replace the following lines with your actual model loading and prediction code
-            model = pickle.load(open('model.pkl', 'rb'))
+            model = joblib.load('model.pkl')  # Use joblib instead of pickle
             features = [[1, steps, heart_rate, sleep_duration, stress]]
             prediction = model.predict(features)
 

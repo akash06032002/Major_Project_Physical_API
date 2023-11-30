@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Depression Prediction</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Arimo"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Hind:300"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      type="text/css"
+    />
+
+    <style>
+      body {
+        font-family: "Arimo", sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .login-box {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      h1 {
+        font-family: "Pacifico", cursive;
+        color: #333;
+        font-size: 2em;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .prediction {
+        margin-top: 20px;
+        font-weight: bold;
+        color: #333;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="login-box">
+        <h1>Depression Prediction</h1>
+
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict') }}" method="post">
+          <div class="input-group">
+            <label for="Steps">Steps</label>
+            <input type="text" name="Steps" id="Steps" required="required" />
+          </div>
+
+          <div class="input-group">
+            <label for="HeartRate">Heart Rate</label>
+            <input
+              type="text"
+              name="HeartRate"
+              id="HeartRate"
+              required="required"
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="SleepDuration">Sleep Duration</label>
+            <input
+              type="text"
+              name="SleepDuration"
+              id="SleepDuration"
+              required="required"
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="Stress">Stress</label>
+            <input type="text" name="Stress" id="Stress" required="required" />
+          </div>
+
+          <button type="submit">Predict</button>
+        </form>
+
+        <div class="prediction">{{ prediction_text }}</div>
+      </div>
+    </div>
+  </body>
+</html>
